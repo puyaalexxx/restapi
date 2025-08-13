@@ -3,14 +3,22 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+   // const VERIFIED_USER = true;
+   // const UNVERIFIED_USER = false;
+
+    const ADMIN_USER = 'true';
+    const REGULAR_USER = 'false';
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +29,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        //'verified',
+        'verification_token',
+        'is_admin',
     ];
 
     /**
@@ -31,6 +42,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'verification_token',
     ];
 
     /**
@@ -44,5 +56,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /*public function isVerified()
+    {
+        return $this->verified == self::VERIFIED_USER;
+    }*/
+
+    public function isAdmin()
+    {
+        return $this->admin == self::ADMIN_USER;
+    }
+
+    public function generateVerificationCode()
+    {
+        return Str::random(40);
     }
 }
