@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
-    const AVAILABLE_PRODUCTS = 'available';
-    const UNAVAILABLE_PRODUCTS = 'unavailable';
+    const AVAILABLE_PRODUCT = 'available';
+    const UNAVAILABLE_PRODUCT = 'unavailable';
 
     protected $fillable = [
         'name',
@@ -23,12 +23,12 @@ class Product extends Model
 
     public function isAvailable() : bool
     {
-        return $this->status === self::AVAILABLE_PRODUCTS;
+        return $this->status === self::AVAILABLE_PRODUCT;
     }
 
     public function isUnAvailable() : bool
     {
-        return $this->status === self::UNAVAILABLE_PRODUCTS;
+        return $this->status === self::UNAVAILABLE_PRODUCT;
     }
 
     public function seller() : BelongsTo
