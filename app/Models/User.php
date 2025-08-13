@@ -14,11 +14,11 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-   // const VERIFIED_USER = true;
-   // const UNVERIFIED_USER = false;
+   const VERIFIED_USER = true;
+   const UNVERIFIED_USER = false;
 
-    const ADMIN_USER = 'true';
-    const REGULAR_USER = 'false';
+    const ADMIN_USER = true;
+    const REGULAR_USER = false;
 
     /**
      * The attributes that are mass assignable.
@@ -58,10 +58,10 @@ class User extends Authenticatable
         ];
     }
 
-    /*public function isVerified()
+    public function isVerified()
     {
         return $this->verified == self::VERIFIED_USER;
-    }*/
+    }
 
     public function isAdmin()
     {
