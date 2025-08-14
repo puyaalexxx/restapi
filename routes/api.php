@@ -7,6 +7,7 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Route;
 
 //Buyers
 Route::apiResource('buyers', BuyerController::class);
