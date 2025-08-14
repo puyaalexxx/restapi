@@ -17,6 +17,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
+
    const VERIFIED_USER = true;
    const UNVERIFIED_USER = false;
 
@@ -61,17 +63,17 @@ class User extends Authenticatable
         ];
     }
 
-    public function isVerified()
+    public function isVerified(): bool
     {
         return $this->verified == self::VERIFIED_USER;
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return $this->admin == self::ADMIN_USER;
     }
 
-    public static function generateVerificationCode()
+    public static function generateVerificationCode(): string
     {
         return Str::random(40);
     }

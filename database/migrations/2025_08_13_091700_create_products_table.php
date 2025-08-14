@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('description', 1000)->nullable();
             $table->integer('quantity')->unsigned();
             $table->string('status')->default(Product::UNAVAILABLE_PRODUCT);
-            $table->string('seller_id')->unsigned();
+            $table->string('image')->nullable();
 
-            $table->foreignId('seller_id')->references('id')->on('users');
+            $table->foreignId('seller_id')->constrained('users');
 
             $table->timestamps();
         });
