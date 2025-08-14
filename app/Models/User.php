@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 /**
  * @method static truncate()
+ * @method static create(array $data)
  */
 class User extends Authenticatable
 {
